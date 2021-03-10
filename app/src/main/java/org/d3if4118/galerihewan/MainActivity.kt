@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Button
 import android.widget.ImageView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import org.d3if4118.galerihewan.databinding.ActivityMainBinding
 
 
@@ -23,7 +25,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("MainActivity", "Jumlah data: " + getData().size)
+        with(binding.recyclerView) {
+            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+            adapter = MainAdapter(getData())
+            setHasFixedSize(true)
+        }
+
 
 //        val nextButton: Button = findViewById(R.id.nextButton)
 //        nextButton.setOnClickListener { showNext() }
